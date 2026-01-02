@@ -1,7 +1,9 @@
 '''
 Docstring for Zoo Project.Animals_Main
 Zoo Simulation System 
-This is the Main Animal parent class
+This is the Main Animal parent class, Subclasses for different animal species Herbivores, Carnivores.
+Defined methods for animal behaviors: make_sound, eat, get_interaction_msg, sleep, wake_up, rest, roam.
+Uses abstract classes and methods that enforce polymorphism and abstraction.
 '''
 from abc import ABC, abstractmethod
 from datetime import datetime
@@ -96,29 +98,29 @@ class Carnivores(Animal):
         self.adjust_hunger(3)
         return f"{self.a_name} lets out a fierce roar..."
 
-class Birds(Animal):
-    def __init__(self, name, count, energy_level):
-        super().__init__(name, count, energy_level)
+# class Birds(Animal):
+#     def __init__(self, name, count, energy_level):
+#         super().__init__(name, count, energy_level)
     
-    def __str__(self):
-        parent_str = super().__str__()
-        return f"[Birds] {parent_str}"
+#     def __str__(self):
+#         parent_str = super().__str__()
+#         return f"[Birds] {parent_str}"
 
-class Aquatic_lives(Animal):
-    def __init__(self, name, count, energy_level):
-        super().__init__(name, count, energy_level)
+# class Aquatic_lives(Animal):
+#     def __init__(self, name, count, energy_level):
+#         super().__init__(name, count, energy_level)
     
-    def __str__(self):
-        parent_str = super().__str__()
-        return f"[Aquatic] {parent_str}"
+#     def __str__(self):
+#         parent_str = super().__str__()
+#         return f"[Aquatic] {parent_str}"
 
-class Reptiles(Animal):
-    def __init__(self, name, count, energy_level):
-        super().__init__(name, count, energy_level)
+# class Reptiles(Animal):
+#     def __init__(self, name, count, energy_level):
+#         super().__init__(name, count, energy_level)
     
-    def __str__(self):
-        parent_str = super().__str__()
-        return f"[Reptiles] {parent_str}"
+#     def __str__(self):
+#         parent_str = super().__str__()
+#         return f"[Reptiles] {parent_str}"
     
 
 
