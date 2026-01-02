@@ -1,5 +1,7 @@
 '''
-Animal Main class to initialize the classes with data
+Animal Main to initialize the classes with data, Create a Visitor class and Zoo class to simulate a day at the zoo.
+Visitor visits the active list of visiting animals. Simulates Visitor class interaction with animals. Activities of animlals in
+a day at the zoo. Runs the simulation for multiple days.
 '''
 import json
 from Animal import Animal, Herbivores, Carnivores #, Birds, Reptiles, Aquatic_lives
