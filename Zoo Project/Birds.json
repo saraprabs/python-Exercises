@@ -1,0 +1,17 @@
+[
+    {
+        "name" : "Parrot",
+        "count" : 25,
+        "energy_level": "high" 
+    },
+    {
+        "name" : "peacock",
+        "count" : 4,
+        "energy_level": "normal" 
+    },
+    {
+        "name" : "Flamingo",
+        "count" : 6,
+        "energy_level": "moderate" 
+    }
+]

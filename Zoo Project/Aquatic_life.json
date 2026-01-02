@@ -1,0 +1,17 @@
+[
+    {
+        "name" : "Clown fish",
+        "count" : 12,
+        "energy_level": "normal" 
+    },
+    {
+        "name" : "Gold fish",
+        "count" : 22,
+        "energy_level": "normal" 
+    },
+    {
+        "name" : "Seal",
+        "count" : 6,
+        "energy_level": "high" 
+    }
+]

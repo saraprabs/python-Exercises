@@ -1,0 +1,26 @@
+[
+    {
+        "name" : "Lion",
+        "count" : 2,
+        "energy_level": "high",
+        "fed_time": "11:00"
+    },
+    {
+        "name" : "Tiger",
+        "count" : 2,
+        "energy_level": "high",
+        "fed_time": "10:00" 
+    },
+    {
+        "name" : "Bear",
+        "count" : 4,
+        "energy_level": "moderate",
+        "fed_time": "13:00" 
+    },
+    {
+        "name" : "Wolf",
+        "count" : 4,
+        "energy_level": "moderate",
+        "fed_time": "14:00" 
+    }
+]

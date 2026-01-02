@@ -1,0 +1,32 @@
+[
+    {
+        "name" : "Deer",
+        "count" : 78,
+        "energy_level": "normal",
+        "fed_time": "09:00"
+    },
+    {
+        "name" : "Elephant",
+        "count" : 4,
+        "energy_level": "moderate",
+        "fed_time": "11:00" 
+    },
+    {
+        "name" : "Giraffe",
+        "count" : 4,
+        "energy_level": "moderate",
+        "fed_time": "16:00" 
+    },
+    {
+        "name" : "Zebra",
+        "count" : 8,
+        "energy_level": "moderate",
+        "fed_time": "15:00"
+    },
+    {
+        "name" : "Camel",
+        "count" : 5,
+        "energy_level": "normal",
+        "fed_time": "12:00" 
+    }
+]
