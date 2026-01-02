@@ -24,7 +24,7 @@ class Visitor:
         time_diff = abs((now - feed_time).total_seconds() / 60)
         if time_diff <= 60:
             print(f"Visitor {self.v_name } arrived during feeding window!")
-            if animal.hunger_level > 7:
+            if animal.hunger_level >= 5:
                 print(f"The {animal.a_name} looks hungry!")
                 self.interact(animal)
             elif animal.is_sleeping:
@@ -34,7 +34,8 @@ class Visitor:
         else:
             print("Cannot feed animal now")
             print(f"{animal.a_name} is fed at {animal.fed_time} but visitor is here at {self.v_time}")
-    
+            return
+        
     def interact(self, animal):
         # if isinstance(animal, Herbivores):
         #     print(f"{self.v_name} tosses leaves and veggies to {animal.a_name}")
@@ -43,7 +44,7 @@ class Visitor:
         # Polymorphism in action, Python calls the correct version of interact based on the animals actual class
         message = animal.get_interaction_msg()
         print(f"{self.v_name} {message}")
-        print(animal.eat())
+        return
 
 class Zoo:
     def __init__(self, all_animals):
@@ -76,6 +77,7 @@ class Zoo:
                     print(animal.make_sound())
                 elif "Noon" in time:
                     visitor1.visit(animal)
+                    print(animal.eat())
                 else: # Afternoon
                     if animal.energy_level in ["low", "normal"]:
                         print(animal.rest())

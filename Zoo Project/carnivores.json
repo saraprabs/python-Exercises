@@ -14,13 +14,13 @@
     {
         "name" : "Bear",
         "count" : 4,
-        "energy_level": "moderate",
+        "energy_level": "normal",
         "fed_time": "13:00" 
     },
     {
         "name" : "Wolf",
         "count" : 4,
-        "energy_level": "moderate",
+        "energy_level": "normal",
         "fed_time": "14:00" 
     }
 ]

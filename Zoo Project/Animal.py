@@ -11,7 +11,7 @@ class Animal(ABC):
     def __init__(self, name, count, energy_level, fed_time):
         self.a_name = name
         self.a_count = count
-        self.energy_level = "normal"
+        self.energy_level = energy_level  # e.g., "high", "normal", "low"
         self.hunger_level = 5   # hunger level attribute to check & feed
         self.fed_time = datetime.strptime(fed_time, "%H:%M").time()
         self.is_sleeping = False
@@ -52,9 +52,7 @@ class Animal(ABC):
     def __str__(self):
         return f"[Animal] Name: {self.a_name:<10} | Count: {self.a_count:<10} | Energy_level: {self.energy_level:<10} | feeding time: {self.fed_time}"
     
-    def __getitem__(self, index):
-        return self.animals[index]
-    
+        
 class Herbivores(Animal):
     def __init__(self, name, count, energy_level, fed_time):
         super().__init__(name, count, energy_level, fed_time)
@@ -69,7 +67,7 @@ class Herbivores(Animal):
     def eat(self):
         self.energy_level = "high"
         self.hunger_level = 0 # Fully satisfied
-        return f"{self.a_name} is munching on greens."
+        return f"{self.a_name} is fed..."
     
     def make_sound(self):
         self.energy_level = "normal"
@@ -91,7 +89,7 @@ class Carnivores(Animal):
     def eat(self):
         self.energy_level = "high"
         self.hunger_level = 0 # Fully satisfied
-        return f"{self.a_name} is feeding on meat."
+        return f"{self.a_name} is fed..."
     
     def make_sound(self):
         self.energy_level = "normal"

@@ -8,19 +8,19 @@
     {
         "name" : "Elephant",
         "count" : 4,
-        "energy_level": "moderate",
+        "energy_level": "normal",
         "fed_time": "11:00" 
     },
     {
         "name" : "Giraffe",
         "count" : 4,
-        "energy_level": "moderate",
+        "energy_level": "normal",
         "fed_time": "16:00" 
     },
     {
         "name" : "Zebra",
         "count" : 8,
-        "energy_level": "moderate",
+        "energy_level": "normal",
         "fed_time": "15:00"
     },
     {
