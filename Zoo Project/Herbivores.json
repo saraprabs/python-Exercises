@@ -2,31 +2,31 @@
     {
         "name" : "Deer",
         "count" : 78,
-        "energy_level": "normal",
-        "fed_time": "09:00"
+        "energy_level": 45,
+        "fed_time": "12:00"
     },
     {
         "name" : "Elephant",
         "count" : 4,
-        "energy_level": "normal",
-        "fed_time": "11:00" 
+        "energy_level": 70,
+        "fed_time": "12:00" 
     },
     {
         "name" : "Giraffe",
         "count" : 4,
-        "energy_level": "normal",
-        "fed_time": "16:00" 
+        "energy_level": 60,
+        "fed_time": "12:00" 
     },
     {
         "name" : "Zebra",
         "count" : 8,
-        "energy_level": "normal",
-        "fed_time": "15:00"
+        "energy_level": 55,
+        "fed_time": "08:00"
     },
     {
         "name" : "Camel",
         "count" : 5,
-        "energy_level": "normal",
-        "fed_time": "12:00" 
+        "energy_level": 80,
+        "fed_time": "16:00" 
     }
 ]

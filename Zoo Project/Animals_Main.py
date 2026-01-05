@@ -4,7 +4,7 @@ Visitor visits the active list of visiting animals. Simulates Visitor class inte
 a day at the zoo. Runs the simulation for multiple days.
 '''
 import json
-from Animal import Animal, Herbivores, Carnivores #, Birds, Reptiles, Aquatic_lives
+from Animal import Deer, Lion, Elephant, Zebra, Tiger 
 from datetime import timedelta, datetime
 
 class Visitor:
@@ -22,11 +22,12 @@ class Visitor:
         feed_time = datetime.combine(dummy_date, animal.fed_time)
         # Check if the difference is less than 60 minutes
         time_diff = abs((now - feed_time).total_seconds() / 60)
-        if time_diff <= 60:
+        if time_diff <= 120:
             print(f"Visitor {self.v_name } arrived during feeding window!")
             if animal.hunger_level >= 5:
                 print(f"The {animal.a_name} looks hungry!")
                 self.interact(animal)
+                
             elif animal.is_sleeping:
                 print(f"{animal.a_name} is asleep. {self.v_name} walks away quietly.")
             else:
@@ -44,6 +45,7 @@ class Visitor:
         # Polymorphism in action, Python calls the correct version of interact based on the animals actual class
         message = animal.get_interaction_msg()
         print(f"{self.v_name} {message}")
+        print(f"{animal.eat()}")
         return
 
 class Zoo:
@@ -56,43 +58,75 @@ class Zoo:
         """Filters the master list for specific animals to show today."""
         self.visit_animal_list = [a for a in self.all_animals if a.a_name in visiting_names]
 
-    def simulate_zoo_day(self, visiting_names):
+    def simulate_zoo_day(self, visiting_names, visitors):
         self.prepare_exhibits(visiting_names)
-        hours = ["08:00 (Morning)", "12:00 (Noon)", "16:00 (Afternoon)", "20:00 (Night)"]
-        visitor1 = Visitor("Alice", "1512", "12:00")
-        # visiting_animals = ["Deer","Zebra","Elephant","Giraffe","Lion","Tiger","Bear","Wolf"]
-        # self.visit_animal_list = [obj for obj in herbivores if obj.a_name in visiting_animals]
-        # self.visit_animal_list += [obj1 for obj1 in carnivores if obj1.a_name in visiting_animals] 
-    
+        hours_map = {
+            "08:00 (Morning)": "08:00",
+            "12:00 (Noon)": "12:00",
+            "16:00 (Afternoon)": "16:00",
+            "20:00 (Night)": "20:00"
+            }
+                    
         print(f"==================Day {self.day} at the ZOO===================")
-        for time in hours:
-            print(f"--- Time: {time} ---")
+           
+        for label, time_str in hours_map.items():
+            print(f"--- Current Zoo Time: {label} ---")
+            current_sim_time = datetime.strptime(time_str, "%H:%M").time()
+
+            current_visitors = [v for v in visitors if v.v_time == current_sim_time]
+            if current_visitors:
+                print(f"Visitors at the Zoo: {', '.join([v.v_name for v in current_visitors])}")
+
             for animal in self.visit_animal_list:
-                if "Night" in time:
-                    print(animal.sleep())
-                    animal.adjust_hunger(3)
-                elif "Morning" in time:
+                # Noon & visitor interaction logic
+                for visitor in current_visitors:
+                    visitor.visit(animal)
+
+                def feed_animal_check():
+                    if animal.fed_time == current_sim_time and animal.hunger_level > 0:
+                        print(f"[SCHEDULED FEEDING] It's {time_str}! {animal.eat()}")
+                    return
+                if "Morning" in label:
                     print(animal.wake_up())
                     print(animal.roam())
                     print(animal.make_sound())
-                elif "Noon" in time:
-                    visitor1.visit(animal)
-                    print(animal.eat())
-                else: # Afternoon
-                    if animal.energy_level in ["low", "normal"]:
+                    feed_animal_check()
+                elif "Afternoon" in label:
+                    feed_animal_check() # Afternoon
+                    if animal.energy_level < 50:
+                        print(f"{animal.a_name} has low energy ({animal.energy_level}%).")
                         print(animal.rest())
                     else:
+                        print(f"{animal.a_name} is still energetic ({animal.energy_level}%).")
                         print(animal.roam())
+                elif "Night" in label:
+                    print(animal.sleep())
+                    animal.adjust_hunger(3)
         self.day+=1
         
 #Load and combine data
 def load_data():
-    def load_json(path, cls):
+    species_map = {
+        "Deer": Deer,
+        "Lion": Lion,
+        "Elephant": Elephant,
+        "Zebra": Zebra,
+        "Tiger": Tiger
+        # Add others as you create them
+    }
+    def load_json(path):
         with open(path, 'r') as f:
-            return [cls(**data) for data in json.load(f)]
-        
-    herb_list = load_json('c:/Users/Elev/python/Zoo Project/Herbivores.json', Herbivores)
-    carn_list = load_json('c:/Users/Elev/python/Zoo Project/Carnivores.json', Carnivores)
+            raw_data = json.load(f)
+            objects = []
+            for data in raw_data:
+                # Look up the class based on the name in JSON
+                species_class = species_map.get(data['name'])
+                if species_class:
+                    objects.append(species_class(**data))
+            return objects
+            
+    herb_list = load_json('c:/Users/Elev/python/Zoo Project/Herbivores.json')
+    carn_list = load_json('c:/Users/Elev/python/Zoo Project/Carnivores.json')
     
     return herb_list + carn_list
 
@@ -101,10 +135,20 @@ def run_simulation(days):
     all_zoo_animals = load_data()
     my_zoo = Zoo(all_zoo_animals)
     active_list = ["Deer", "Zebra", "Elephant", "Lion", "Tiger"]
+
+    #Simulate for visitors arriving at different times
+    zoo_visitors = [
+        Visitor("Alice", "V001", "12:00"),
+        Visitor("Bob", "V002", "12:00"),   # Arrives at the same time as Alice
+        Visitor("Charlie", "V003", "16:00"), # Arrives in the Afternoon
+        Visitor("Diana", "V004", "08:00")    # Early bird visitor
+    ]
+
     for _ in range(days):
-        my_zoo.simulate_zoo_day(active_list)
+        my_zoo.simulate_zoo_day(active_list, zoo_visitors)
         # Visual check of state persistence
         print(f"End of Day Status: {[(a.a_name, 'Energy:', a.energy_level) for a in my_zoo.visit_animal_list]}")
+    print("-"*50)
 
 if __name__ == "__main__":
     run_simulation(3)

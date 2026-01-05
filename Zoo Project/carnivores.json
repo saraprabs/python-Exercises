@@ -2,25 +2,25 @@
     {
         "name" : "Lion",
         "count" : 2,
-        "energy_level": "high",
-        "fed_time": "11:00"
+        "energy_level": 90,
+        "fed_time": "12:00"
     },
     {
         "name" : "Tiger",
         "count" : 2,
-        "energy_level": "high",
-        "fed_time": "10:00" 
+        "energy_level": 85,
+        "fed_time": "12:00" 
     },
     {
         "name" : "Bear",
         "count" : 4,
-        "energy_level": "normal",
+        "energy_level": 60,
         "fed_time": "13:00" 
     },
     {
         "name" : "Wolf",
         "count" : 4,
-        "energy_level": "normal",
+        "energy_level": 65,
         "fed_time": "14:00" 
     }
 ]
